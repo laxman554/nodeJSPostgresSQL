@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const pg = require('pg');
-const path = require('path');
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/examples';
+// const express = require('express');
+ //const router = express.Router();
+// const pg = require('pg');
+// const path = require('path');
+// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/examples';
 
 
 router.post('/api/v1/examples', (req, res, next) => {
@@ -20,6 +20,7 @@ router.post('/api/v1/examples', (req, res, next) => {
     // SQL Query > Insert Data
     client.query('INSERT INTO items(text, complete) values($1, $2)',
     [data.text, data.complete]);
+    console.log(data.text);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM items ORDER BY id ASC');
     // Stream results back one row at a time
